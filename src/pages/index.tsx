@@ -1,33 +1,43 @@
-import React from "react"
+import React, { useRef } from "react"
 import { Canvas } from '../components/Canvas';
 import 'tracking';
 import 'tracking/build/data/face';
+import Glasses from '../images/vecteezy_sunglasses_1196758.png';
 
 export default function App() {
 
-  const cameraOutput = useRef<HTMLVideoElement>();
-  const canvas = useRef<HTMLCanvasElement>();
-
+  const cameraOutputRef = useRef<HTMLVideoElement>();
+  const canvasRef = useRef<HTMLCanvasElement>();
+  const tracker = useRef<tracking.ObjectTracker>();
 
   const handleGetFace = () => {
-  const cameraOutput = cameraOutput.current;
-  const canvasCurrent: any = canvas.current;
-  const contextCurrent = canvasCurrent.getContext('2d');
-  let tracker;
+
+
+  
  
-      const img = new Image();
-      img.src = `TODO`;
+    const cameraOutput = cameraOutputRef.current;
+    const canvasCurrent = canvasRef.current;
+    const contextCurrent = canvasCurrent.getContext('2d');
 
-      tracker = new (window as any).tracking.ObjectTracker('face');
-      tracker.setInitialScale(4);
-      tracker.setStepSize(2);
-      tracker.setEdgesDensity(0.1);
+    navigator.mediaDevices.getUserMedia({video: {facingMode: 'user'}}).then(function (stream) {
+      cameraOutput.srcObject = stream;
+    });
+   
+    const img = new Image();
+    img.src = `${Glasses}`;
 
-      (window as any).tracking.track(cameraOutput, tracker, {
+
+      tracker.current = new window.tracking.ObjectTracker(['face']);
+      tracker.current.setInitialScale(4);
+      tracker.current.setStepSize(2);
+      tracker.current.setEdgesDensity(0.1);
+
+      window.tracking.track(cameraOutput, tracker.current, {
         camera: true,
       });
 
-      tracker.on('track', (event) => {
+      tracker.current.on('track', (event) => {
+     
         contextCurrent.clearRect(
           0,
           0,
@@ -41,7 +51,7 @@ export default function App() {
             rect.x,
             rect.y,
             rect.width,
-            rect.height
+            rect.height  / 2
           );
         
         });
@@ -52,8 +62,9 @@ export default function App() {
   return (
     <>
     
-    <Canvas />
-    <button type="button">Do I need my sunglasses?</button>
+    <Canvas cameraOutput={cameraOutputRef} canvas={canvasRef} />
+    <br />
+    <button type="button" onClick={handleGetFace}>Do I need my sunglasses?</button>
     </>
   )
 }
