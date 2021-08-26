@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "form",
-  "author": "Kyle Mathews",
+  "author": "Ash Hitchcock",
   "keywords": [
     "gatsby"
   ],
@@ -15,9 +15,10 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@types/tracking": "^1.1.28",
     "gatsby": "next",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-hook-form": "^7.5.2"
+    "tracking": "^1.1.3"
   }
 }
