@@ -1,0 +1,6 @@
+{
+  "extends": "eslint-config-ashhitch/tsconfig.json",
+  "include": [
+    "src/**/*"
+  ]
+}
