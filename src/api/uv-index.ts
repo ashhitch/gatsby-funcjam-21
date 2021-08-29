@@ -1,5 +1,6 @@
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from 'gatsby';
 import * as dotenv from 'dotenv';
+import fetch from 'node-fetch';
 import { UvResults } from '../types/index';
 
 dotenv.config({ path: '../../.env' });
