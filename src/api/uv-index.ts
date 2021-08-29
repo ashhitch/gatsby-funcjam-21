@@ -1,5 +1,8 @@
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from 'gatsby';
+import * as dotenv from 'dotenv';
 import { UvResults } from '../types/index';
+
+dotenv.config({ path: '../../.env' });
 
 const sampleData: UvResults = {
   result: {
@@ -34,15 +37,16 @@ const sampleData: UvResults = {
 export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
   const { lat, lng, mock } = req.query;
 
-  console.log(`submitted query`, req?.query);
-  console.log(`submitted form`, req.body);
+  console.log(`submitted query`, req?.query, process.env.API_KEY);
+
   if (!lat || !lng) {
     res.status(400).send(`lat and lng are required`);
     return;
   }
   // no key just return the test data
   if (!process.env.API_KEY || mock) {
-    res.json(sampleData);
+    console.log('mock');
+    return res.json(sampleData);
   }
 
   const url = `https://api.openuv.io/api/v1/uv?lat=${lat}&lng=${lng}`;
@@ -55,7 +59,9 @@ export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFun
     const result = await fetch(url, {
       headers,
     });
+    console.log('live');
     res.json(result.json());
+    return;
   } catch (error) {
     res.status(500).send(error);
   }
