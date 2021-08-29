@@ -8,20 +8,20 @@ export interface SafeExposureTime {
 }
 
 export interface SunTimes {
-  solarNoon: Date;
-  nadir: Date;
-  sunrise: Date;
-  sunset: Date;
-  sunriseEnd: Date;
-  sunsetStart: Date;
-  dawn: Date;
-  dusk: Date;
-  nauticalDawn: Date;
-  nauticalDusk: Date;
-  nightEnd: Date;
-  night: Date;
-  goldenHourEnd: Date;
-  goldenHour: Date;
+  solarNoon: string;
+  nadir: string;
+  sunrise: string;
+  sunset: string;
+  sunriseEnd: string;
+  sunsetStart: string;
+  dawn: string;
+  dusk: string;
+  nauticalDawn: string;
+  nauticalDusk: string;
+  nightEnd: string;
+  night: string;
+  goldenHourEnd: string;
+  goldenHour: string;
 }
 
 export interface SunPosition {
@@ -36,11 +36,11 @@ export interface SunInfo {
 
 export interface UvResult {
   uv: number;
-  uv_time: Date;
+  uv_time: string;
   uv_max: number;
-  uv_max_time: Date;
+  uv_max_time: string;
   ozone: number;
-  ozone_time: Date;
+  ozone_time: string;
   safe_exposure_time: SafeExposureTime;
   sun_info: SunInfo;
 }

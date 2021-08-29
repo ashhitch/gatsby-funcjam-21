@@ -10,7 +10,7 @@ interface StartProps {
 const StyledStart = styled(AppBar)`
   z-index: 999;
 `;
-const Start: FC<StartProps> = ({ action }) => {
+export const Start: FC<StartProps> = ({ action }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -53,5 +53,3 @@ const Start: FC<StartProps> = ({ action }) => {
     </>
   );
 };
-
-export default Start;

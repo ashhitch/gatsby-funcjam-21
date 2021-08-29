@@ -13,7 +13,7 @@ const StyledWrap = styled.div`
   overflow: hidden;
   @media (max-width: 768px) {
     width: 100%;
-    height: 800px;
+    height: 480px;
     max-width: 768px;
     overflow: hidden;
   }
@@ -30,7 +30,7 @@ const StyledCanvas = styled.canvas`
   object-fit: cover;
   @media (max-width: 768px) {
     width: 100%;
-    height: 800px;
+    height: 480px;
     max-width: 768px;
     overflow: hidden;
   }
