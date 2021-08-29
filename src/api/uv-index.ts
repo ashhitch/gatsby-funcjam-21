@@ -61,7 +61,9 @@ export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFun
       headers,
     });
     console.log('live');
-    res.json(result.json());
+    const data = (await result.json()) as UvResults;
+    console.log(data);
+    res.json(data);
     return;
   } catch (error) {
     console.log(error);
