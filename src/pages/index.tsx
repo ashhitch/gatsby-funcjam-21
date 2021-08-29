@@ -17,6 +17,7 @@ import { Start } from '../components/Start';
 import { Error } from '../components/Error';
 import { isBrowser } from '../utils/isBrowser';
 
+const uvLevel = 4.5;
 const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'ms_sans_serif';
@@ -146,7 +147,7 @@ export default function App() {
 
       const img = new Image();
 
-      if (uv_max >= 5) {
+      if (uv_max >= uvLevel) {
         img.src = `${Glasses}`;
       } else {
         img.src = `${Cloud}`;
@@ -172,7 +173,7 @@ export default function App() {
         contextCurrent.clearRect(0, 0, canvasCurrent.width, canvasCurrent.height);
 
         event.data.forEach((rect) => {
-          contextCurrent.drawImage(img, rect.x, uv_max >= 5 ? rect.y : rect.y - 30, rect.width, rect.height / 2);
+          contextCurrent.drawImage(img, rect.x, uv_max >= uvLevel ? rect.y : rect.y - 30, rect.width, rect.height / 2);
         });
       });
     } catch (e) {

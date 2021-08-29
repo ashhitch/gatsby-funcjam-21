@@ -38,8 +38,6 @@ const sampleData: UvResults = {
 export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
   const { lat, lng, mock } = req.query;
 
-  console.log(`submitted query`, req?.query, process.env.API_KEY);
-
   if (!lat || !lng) {
     res.status(400).send(`lat and lng are required`);
     return;

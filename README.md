@@ -1,21 +1,27 @@
 
 # Gatsby FuncJam '21
 ## Do I need my sunglasses?
-
+Use your webcam and location to decide if you need your sunglasses today.
 
 ## Installation
 
 `npm install`
 
 
-generate api key at [Open UV](https://www.openuv.io/)
-Add `API_KEY` environment variable.
+- Generate api key at [Open UV](https://www.openuv.io/).
+- Add `API_KEY` environment variable. (if no API key is added mock data is used).
+- Camera and location is required.
+
+## Demo
+[sunglasses.gatsbyjs.io](https://sunglasses.gatsbyjs.io/)
+
+![Demo](./demo.jpg)
 
 ## Submission Checklist
 
-- [ ] Add installation documentation to the README
-- [ ] Update the `/api` folder with your function
-- [ ] Submit your theme at https://gatsbyjs.com/func-jam-21/
+- [x] Add installation documentation to the README
+- [x] Update the `/api` folder with your function
+- [x] Submit your theme at https://gatsbyjs.com/func-jam-21/
 
 ## Helpful Links
 
