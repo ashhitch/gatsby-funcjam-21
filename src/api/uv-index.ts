@@ -63,6 +63,7 @@ export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFun
     res.json(result.json());
     return;
   } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 }
