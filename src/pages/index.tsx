@@ -5,13 +5,12 @@ import 'tracking/build/data/face';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import { styleReset, Window, WindowHeader, WindowContent, Button, Panel, Hourglass } from 'react95';
-// pick a theme of your choice
 import original from 'react95/dist/themes/original';
-// original Windows95 font (optionally)
 import msSansSerif from 'react95/dist/fonts/ms_sans_serif.woff2';
 import msSansSerifBold from 'react95/dist/fonts/ms_sans_serif_bold.woff2';
 import { UvResult, UvResults } from '../types';
 import Glasses from '../images/glasses.png';
+import Cloud from '../images/cloud.png';
 import Details from '../components/Details';
 import { Canvas } from '../components/Canvas';
 import { Start } from '../components/Start';
@@ -147,10 +146,10 @@ export default function App() {
 
       const img = new Image();
 
-      if (uv_max >= 4) {
+      if (uv_max >= 5) {
         img.src = `${Glasses}`;
       } else {
-        img.src = `${Glasses}`; // TODO change to something else
+        img.src = `${Cloud}`;
       }
 
       setLoading(false);
@@ -173,7 +172,7 @@ export default function App() {
         contextCurrent.clearRect(0, 0, canvasCurrent.width, canvasCurrent.height);
 
         event.data.forEach((rect) => {
-          contextCurrent.drawImage(img, rect.x, rect.y, rect.width, rect.height / 2);
+          contextCurrent.drawImage(img, rect.x, uv_max >= 5 ? rect.y : rect.y - 30, rect.width, rect.height / 2);
         });
       });
     } catch (e) {
@@ -182,6 +181,7 @@ export default function App() {
       setLoading(false);
     }
   };
+
   const stopSream = (videoEl: HTMLVideoElement) => {
     const stream = videoEl.srcObject;
     // now get all tracks

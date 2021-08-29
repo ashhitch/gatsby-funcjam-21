@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { AppBar, Toolbar, TextField, Button, List, ListItem, Divider } from 'react95';
+import { AppBar, Toolbar, Button, List, ListItem, Divider } from 'react95';
 import logoIMG from '../images/glogo.png';
 
 interface StartProps {
