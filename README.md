@@ -3,18 +3,23 @@
 ## Do I need my sunglasses?
 Use your webcam and location to decide if you need your sunglasses today.
 
+Uses a Gatsby Function to call 3rd Party API so the API key is not exposed to the end user.
+
+Built for Gatsby FuncJam '21
+
 ## Installation
 
-`npm install`
+install dependencies: `npm install` or `yarn`
 
 
-- Generate api key at [Open UV](https://www.openuv.io/).
-- Add `API_KEY` environment variable. (if no API key is added mock data is used).
+- Generate API key at [Open UV](https://www.openuv.io/).
+- Add `API_KEY` environment variable. (Note: if no API key is added mock data is used).
 - Camera and location is required.
 
 ## Demo
 [sunglasses.gatsbyjs.io](https://sunglasses.gatsbyjs.io/)
 
+## Preview
 ![Demo](./demo.jpg)
 
 ### Custom Error screen
@@ -26,8 +31,3 @@ Use your webcam and location to decide if you need your sunglasses today.
 - [x] Update the `/api` folder with your function
 - [x] Submit your theme at https://gatsbyjs.com/func-jam-21/
 
-## Helpful Links
-
-Read the Gatsby [functions docs](https://www.gatsbyjs.com/docs/reference/functions/).
-Check out this video all about Gatsby functions 
-Take a look at the Functions Use Cases over [here](https://www.gatsbyjs.com/products/cloud/functions/). 
