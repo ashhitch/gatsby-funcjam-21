@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import 'tracking';
 import 'tracking/build/data/face';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-
+import { Helmet } from 'react-helmet';
 import { styleReset, Window, WindowHeader, WindowContent, Button, Panel, Hourglass } from 'react95';
 import original from 'react95/dist/themes/original';
 import msSansSerif from 'react95/dist/fonts/ms_sans_serif.woff2';
@@ -215,6 +215,10 @@ export default function App() {
 
   return (
     <>
+      <Helmet>
+        <title>Do i need my Sunglasses today?</title>
+        <meta name="description" content="Do i need my Sunglasses today? a Gatsby Gatsby FuncJam '21 entry." />
+      </Helmet>
       <GlobalStyles />
       <ThemeProvider theme={original}>
         {error && <Error handleClose={handleClose} error={error} />}
