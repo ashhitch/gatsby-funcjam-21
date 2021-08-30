@@ -17,6 +17,9 @@ Use your webcam and location to decide if you need your sunglasses today.
 
 ![Demo](./demo.jpg)
 
+### Custom Error screen
+![Demo](./error.jpg)
+
 ## Submission Checklist
 
 - [x] Add installation documentation to the README
