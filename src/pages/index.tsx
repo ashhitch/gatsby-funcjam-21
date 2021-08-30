@@ -97,13 +97,13 @@ export default function App() {
   const trackerTask = useRef<tracking.TrackerTask>();
   const [result, setResult] = useState<UvResult>();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
     if (isBrowser) {
       window.addEventListener('keypress', (e) => {
         if (e.key.toLowerCase() === 'f') {
-          setError(false);
+          setError(undefined);
         }
       });
     }
@@ -116,7 +116,7 @@ export default function App() {
       return uv;
     } catch (e) {
       console.log(e);
-      setError(true);
+      setError(e?.message || 'Something went wrong');
     }
   };
 
@@ -178,7 +178,7 @@ export default function App() {
       });
     } catch (e) {
       console.log(e);
-      setError(true);
+      setError(e?.message || 'Something went wrong');
       setLoading(false);
     }
   };
@@ -199,7 +199,7 @@ export default function App() {
   const handleClose = () => {
     setResult(undefined);
     setLoading(false);
-    setError(false);
+    setError(undefined);
     if (cameraOutputRef.current) {
       stopSream(cameraOutputRef.current);
     }
@@ -210,7 +210,7 @@ export default function App() {
     <>
       <GlobalStyles />
       <ThemeProvider theme={original}>
-        {error && <Error handleClose={handleClose} />}
+        {error && <Error handleClose={handleClose} error={error} />}
         <StyledWindow>
           <Start action={handleGetFace} />
           {loading && <Hourglass size={64} />}
