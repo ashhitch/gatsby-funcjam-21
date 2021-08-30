@@ -19,6 +19,8 @@
     "@types/tracking": "^1.1.28",
     "dotenv": "^10.0.0",
     "gatsby": "3.12.1",
+    "gatsby-plugin-manifest": "^3.12.0",
+    "gatsby-plugin-offline": "^4.12.0",
     "gatsby-plugin-styled-components": "^4.12.0",
     "gatsby-source-filesystem": "^3.12.0",
     "node-fetch": "^2.6.1",
