@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 import { UvResults } from '../types/index';
 
 dotenv.config({ path: '../../.env' });
-
+// Mock Data
 const sampleData: UvResults = {
   result: {
     uv: 0.8736,
@@ -47,7 +47,7 @@ export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFun
     console.log('mock');
     return res.json(sampleData);
   }
-
+  // Hit live API
   const url = `https://api.openuv.io/api/v1/uv?lat=${lat}&lng=${lng}`;
   const headers: HeadersInit = {
     'Content-Type': 'application/json',

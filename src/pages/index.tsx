@@ -99,6 +99,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | undefined>();
 
+  // listen for F key to close error screen
   useEffect(() => {
     if (isBrowser) {
       window.addEventListener('keypress', (e) => {
@@ -109,6 +110,7 @@ export default function App() {
     }
   }, [isBrowser]);
 
+  // call Gatsby Function to get UV data
   const getUV = async ({ latitude, longitude }): Promise<UvResults> => {
     try {
       const res = await fetch(`/api/uv-index?lat=${latitude}&lng=${longitude}`);
@@ -135,18 +137,19 @@ export default function App() {
   const handleGetFace = async () => {
     setLoading(true);
     try {
+      // Get Geo location
       const pos = await getCoords();
 
       if (!pos) {
         return;
       }
-
+      // Get UV values from API
       const uv = await getUV(pos);
       setResult(uv.result);
       const { uv_max } = uv.result;
 
       const img = new Image();
-
+      // Which image to show?
       if (uv_max >= uvLevel) {
         img.src = `${Glasses}`;
       } else {
@@ -154,10 +157,12 @@ export default function App() {
       }
 
       setLoading(false);
+
       const cameraOutput = cameraOutputRef.current;
       const canvasCurrent = canvasRef.current;
       const contextCurrent = canvasCurrent.getContext('2d');
 
+      // Fixes issue with TrackingJS to show video feed
       cameraOutput!.srcObject = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
 
       tracker.current = new window.tracking.ObjectTracker(['face']);
@@ -168,7 +173,7 @@ export default function App() {
       trackerTask.current = window.tracking.track(cameraOutput, tracker.current, {
         camera: true,
       });
-
+      // Draw image on the canvas
       tracker.current.on('track', (event) => {
         contextCurrent.clearRect(0, 0, canvasCurrent.width, canvasCurrent.height);
 
@@ -183,6 +188,7 @@ export default function App() {
     }
   };
 
+  // Stop all video streams
   const stopSream = (videoEl: HTMLVideoElement) => {
     const stream = videoEl.srcObject;
     // now get all tracks
@@ -196,6 +202,7 @@ export default function App() {
     videoEl.srcObject = null;
   };
 
+  // Close the window or error screen (reset everythibng)
   const handleClose = () => {
     setResult(undefined);
     setLoading(false);
